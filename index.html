@@ -8,9 +8,17 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: url('background.png') no-repeat center center fixed;
-            background-size: cover;
+            background: #FFFFFF; /* Default background color */
             font-family: Arial, sans-serif;
+        }
+        body.start {
+            background: url('https://maayanyosef.github.io/bagit-catch-game/background.png') no-repeat center center fixed;
+            background-size: contain; /* Ensure the image fits within the screen */
+            background-position: center; /* Center the image */
+            transform: scale(0.5); /* Scale down the image to 80% of its original size */
+            background-color: black; /* Fallback color */
+            background-repeat: no-repeat; /* Prevent image from repeating */
+        }
         }
         canvas {
             display: block;
@@ -25,7 +33,7 @@
         }
         #startButton {
             position: absolute;
-            top: 50%;
+            top: 140%;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px 40px;
@@ -66,11 +74,11 @@
         }
     </style>
 </head>
-<body>
+<body class="start">
     <div id="scoreboard">
         Time: <span id="time">60</span> sec | Score: <span id="score">0</span> | Stars: <span id="stars">0</span>
     </div>
-    <img id="starImage" src="https://blog.kubefirst.io/content/images/2024/04/github-stars-logo_Color.webp" alt="Star Earned">
+    <img id="starImage" src="https://maayanyosef.github.io/bagit-catch-game/github-stars.png" alt="Star Earned">
     <button id="startButton">Start Game</button>
     <button id="stopButton">Stop Game</button>
     <canvas id="gameCanvas"></canvas>
@@ -86,12 +94,18 @@
         const scoreElement = document.getElementById('score');
         const starsElement = document.getElementById('stars');
         const catchSound = document.getElementById('catchSound');
+        const body = document.body;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         const catImg = new Image();
-        catImg.src = 'https://techcrunch.com/wp-content/uploads/2010/07/github-logo.png'; // GitHub logo cat image
+        catImg.src = 'https://maayanyosef.github.io/bagit-catch-game/github.png'; // GitHub logo cat image
 
         let score = 0;
         let stars = 0;
@@ -113,12 +127,20 @@
         startButton.addEventListener('click', startGame);
         stopButton.addEventListener('click', stopGame);
         canvas.addEventListener('click', jump);
+        canvas.addEventListener('touchstart', jump); // Touch event for jumping
 
         document.addEventListener('mousemove', function (event) {
             cat.x = event.clientX - cat.width / 2;
         });
 
+        document.addEventListener('touchmove', function (event) {
+            const touch = event.touches[0];
+            cat.x = touch.clientX - cat.width / 2;
+            event.preventDefault();
+        }, { passive: false });
+
         function startGame() {
+            body.classList.remove('start'); // Remove the start class to remove the background image
             startButton.style.display = 'none';
             stopButton.style.display = 'block';
             scoreboard.style.display = 'block';
@@ -151,6 +173,7 @@
             score = 0;
             stars = 0;
             clearBaguettes(); // Clear baguettes
+            body.classList.add('start'); // Reapply the start class to show the background image again
         }
 
         function updateGame() {
@@ -287,6 +310,7 @@
             startButton.style.display = 'block';
             scoreboard.style.display = 'none';
             clearBaguettes();
+            body.classList.add('start'); // Reapply the start class to show the background image again
         }
     </script>
 </body>
