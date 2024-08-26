@@ -3,8 +3,8 @@
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <link rel="icon" href="https://maayanyosef.github.io/bagit-catch-game/favicon.ico">
-    <link rel="apple-touch-icon" href="https://maayanyosef.github.io/bagit-catch-game/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="https://bagit.explorium.ninja/favicon.ico">
+    <link rel="apple-touch-icon" href="https://bagit.explorium.ninja/apple-touch-icon.png">
     <title>Bagit Catch Game</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHEC3V0NPY"></script>
@@ -23,7 +23,7 @@
             font-family: Arial, sans-serif;
         }
         body.start {
-            background: url('https://maayanyosef.github.io/bagit-catch-game/background.png') no-repeat center center fixed;
+            background: url('https://bagit.explorium.ninja/background.png') no-repeat center center fixed;
             background-size: contain; /* Ensure the image fits within the screen */
             background-position: center; /* Center the image */
             transform: scale(0.5); /* Scale down the image to 80% of its original size */
@@ -89,7 +89,7 @@
     <div id="scoreboard">
         Time: <span id="time">60</span> sec | Score: <span id="score">0</span> | Stars: <span id="stars">0</span>
     </div>
-    <img id="starImage" src="https://maayanyosef.github.io/bagit-catch-game/github-stars.png" alt="Star Earned">
+    <img id="starImage" src="https://bagit.explorium.ninja/github-stars.png" alt="Star Earned">
     <button id="startButton">Start Game</button>
     <button id="stopButton">Stop Game</button>
     <canvas id="gameCanvas"></canvas>
@@ -116,7 +116,7 @@
         window.addEventListener('resize', resizeCanvas);
 
         const catImg = new Image();
-        catImg.src = 'https://maayanyosef.github.io/bagit-catch-game/github.png'; // GitHub logo cat image
+        catImg.src = 'https://bagit.explorium.ninja/github.png'; // GitHub logo cat image
 
         let score = 0;
         let stars = 0;
